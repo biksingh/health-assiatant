@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/jquery.mobile-1.4.5.min.js"></script>
+<script>
+var gender ="Gender not selected"
+var name1="Enter your name..."
+var message="";
+function gen(gend){
+gender = gend;
+}
+function BMI() 
+{ name1=document.getElementById("fname").value;
+if(name1 == ""){
+alert("Enter your name...");
+}
+else
+{
+if(gender == "Gender not selected"){
+alert("Gender not selected");
+}
+else{
+
+  var h=((document.getElementById("height").value)/100)*((document.getElementById("height").value)/100);
+  var w=document.getElementById("weight").value;
+  var bmi=w/h;
+  //alert(gender);
+  //alert(bmi);
+  if (bmi < 15){
+message="Very severely underweight";
+}
+if(bmi >= 15 && bmi < 16){
+message = "Severely underweight";
+}
+if(bmi >= 18.5 && bmi < 25)  {
+   message = "Normal healthy weight";
+  }
+   if(bmi >= 25 && bmi < 30){
+message = "Overweight";
+}
+if(bmi >= 30 && bmi < 35){
+message = "Obese Class I Moderately obese";
+}
+if(bmi >= 35 && bmi < 40){
+message = "Obese Class II Severely obese";
+}
+  if(bmi >=40)
+  {
+ message = "Obese Class III Very severely obese";
+  }
+ // var msg = "<b>Name:</b> ".concat(name1,"</br><b>Gender:</b>",gender,"</br><b>",height,":</b>",h",</br><b>",Weight,":</b>",w,"</br><b>",BMI,":</b>,"bmi,"</br><b>",Status,":</b>,"message,"</br>",
+//alert(msg);
+  window.location="#pagetwo";
+  document.getElementById('report').innerHTML ="<b>".concat(name1,"</b></br>","<b>Health Staus:</b><i>",message ,"</i></br>","<b>BMI:</b><i>",bmi,"</i>")
+}
+}
+}
+
+
+</script>
+</head>
+<body>
+<div data-role="page" id="pageone">
+  <div data-role="panel" id="overlayPanel" data-display="overlay"> 
+    <h2>Overlay Panel</h2>
+    <p>You can close the panel by clicking outside the panel, pressing the Esc key, by swiping, or by clicking the button below:</p>
+	<a href="#pagetwo" data-rel="close" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left" id="BMI">BMI</a>
+    <a href="#pagetwo" data-rel="close" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left">Back</a>
+  </div> 
+  
+  <div data-role="header" data-position="fixed">
+    
+   <a href="#" class="ui-btn ui-corner-all ui-btn ui-icon-home ui-btn-icon-left ui-btn-icon-notext"></a>
+    <h1>Health Assistant</h1>
+  </div>
+
+  <div data-role="main" class="ui-content" >
+    <form method="post" action="demoform.asp">
+      <label for="fname">Name</label>
+      <input type="text" name="fname" id="fname" placeholder="Enter your name...">
+	  
+	  <fieldset data-role="controlgroup" data-type="horizontal">
+      <legend>Choose your gender:</legend>
+        <label for="male">Male</label>
+        <input type="radio" name="gender" id="male" onclick="gen(this.value)" value="male">
+        <label for="female">Female</label>
+        <input type="radio" name="gender" id="female" onclick="gen(this.value)" value="female">	
+      </fieldset>
+	  <label for="weight">Weight(Kg):</label>
+  <input type="range" name="weight" id="weight" value="65" min="2" max="200">
+  <label for="height">Height(cm):</label>
+  <input type="range" name="height" id="height" value="165" min="1" max="228">
+  <a href="#" class="ui-btn" onclick="BMI()">Calculate BMI</a>
+    </form>
+	 
+	</div>
+
+
+  <div data-role="footer" data-position="fixed">
+    <h3>© 2015 Step Technocrats</h3>
+  </div>
+</div>
+  
+  <div data-role="page" id="pagetwo">
+  <div data-role="header" data-position="fixed">
+    <h1>Health Assistant</h1>
+	<a href="#pageone" class="ui-btn ui-corner-all ui-btn ui-icon-home ui-btn-icon-left ui-btn-icon-notext"></a>
+  </div>
+
+  <div data-role="main" class="ui-content">
+	 <p id="report">report</p>
+	 
+	<a href="#" class="ui-btn" data-rel="back">Go Back</a>
+  </div>
+
+  <div data-role="footer" data-position="fixed">
+    <h3>© 2015 Step Technocrats</h3>
+  </div>
+</div>
+</body>
+</html>
